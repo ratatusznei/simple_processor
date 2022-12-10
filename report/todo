@@ -1,0 +1,16 @@
+- Arquitetura
+	tipos 
+	4 registradores
+	mem 256x8, enderecos especiais
+	instruções
+
+- Microarquitetura
+	blocos funcionais
+	maquina de estados
+	implementação vhdl
+
+- Programa exemplo
+	divisão por subtrações sucessivas
+	arquivo asm -> raw -> hex
+	simulação modelsim
+	rodando na placa com o in system memory editor

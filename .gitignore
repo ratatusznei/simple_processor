@@ -1,0 +1,7 @@
+hardware_description/db/
+hardware_description/db/
+hardware_description/greybox_tmp/
+hardware_description/incremental_db/
+hardware_description/output_files/
+hardware_description/simulation/
+hardware_description/*bak
