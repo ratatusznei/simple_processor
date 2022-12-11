@@ -3,6 +3,8 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 use work.proc_types.all;
 
+-- ULA de quatro operacoes, SOMA, NE, LESS e ZERO
+
 entity ula is
 	port(
 		a, b: in word := x"00";

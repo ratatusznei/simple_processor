@@ -28,6 +28,7 @@ package proc_types is
 		state_branch_zero_wait
 	);
 
+	-- Para selecao de sinais dos multiplexadores
 	type address_src_type is (
 		address_from_pc,
 		address_from_result_reg

@@ -5,6 +5,10 @@
 \usepackage{graphicx} \graphicspath{{./images}}
 \usepackage[colorlinks=true, linkcolor=blue]{hyperref}
 
+\usepackage{csquotes}
+\usepackage{biblatex}
+\addbibresource{ref.bib}
+
 \usepackage{tocloft}
 \renewcommand{\cftdot}{\ensuremath{.}}
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
@@ -22,7 +26,7 @@
 
 \par
 Esse documento apresenta o projeto final realizado para a disciplina
-EEB31 \- Circuitos Digitais, ministrada em conjunto pelos professores
+EEB31, Circuitos Digitais, ministrada em conjunto pelos professores
 Fabio Kurt Schneider e Bertoldo Schneider Junior.
 
 \par
@@ -30,19 +34,22 @@ O projeto consiste de um sistema processador simplificado de 8 bits
 e foi desenvolvido para ser executado em uma placa \textit{Terasic DE10-Lite}
 utilizando o software \textit{Quartus Prime} versão 18.
 
+\par
+Esse projeto foi feito com base no livro "Digital Design and Computer Architecture RISC-V Edition" \cite{digdes}.
+
 \newpage
 \section{Conjunto de instruções}
 \par
 O conjunto de instruções é composto de 9 instruções que operam em 4
 registradores de uso geral ($R0$, $R1$, $R2$ e $R3$) e em uma memória
 RAM de 256x8 bits. Todos os operandos são sempre números de 8 bits sem
-sinal. Programa e dados ocupam a mesma memória.
+sinal. O programa e os dados ocupam a mesma memória.
 
 Os endereços 0xFF, 0x02, 0x03 e 0x04 da memória são especiais.
 Ao ler o endereço 0xFF é retornado o valor selecionado pelas chaves
 7 até 0 da placa. Ao escrever nos endereços 0x02, 0x03 e 0x04, é simultaneamente
 escrito em registradores responsáveis por controlar os displays de 7 segmentos
-da placa. O endereço 0x02 controla os displais 0 e 1, o endereço 0x03 controla os 
+da placa. O endereço 0x02 controla os displays 0 e 1, o endereço 0x03 controla os 
 displays 2 e 3, e o endereço 0x04 controla os displays 4 e 5.
 
 Quatro das instruções são muito semelhantes e são agrupadas no Grupo ULA.
@@ -83,7 +90,7 @@ o mesmo registrador.
 A operação \textit{zero} retorna sempre zero, ignorando o conteúdo de $RD$ e $RS$.
 A operação \textit{add} realiza a soma entre os dois registradores.
 A operação \textit{ne} realiza a operação lógica NE entre os dois registradores.
-A operação \textit{less} que realiza a operação $RD < RS$, retornando 0xFF quando verdadeiro e 0x00 quando falso.
+A operação \textit{less} realiza a operação $RD < RS$, retornando 0xFF quando verdadeiro e 0x00 quando falso.
 O resultado de qualquer operação é sempre gravado em $RD$.
 
 
@@ -116,7 +123,7 @@ O nome dessa instrução é baseado na instrução \textit{lw} da arquitetura RI
 	\resizebox{\textwidth}{!}{%
 		\begin{tabular}{|l|l|l|l|l|l|l|l|}
 			\hline
-			0 & 1 & 0 & 1 & $RP_0$ & $RP_1$ & $RD_0$ & $RS_1$ \\ \hline
+			0 & 1 & 0 & 1 & $RP_0$ & $RP_1$ & $RS_0$ & $RS_1$ \\ \hline
 		\end{tabular}%
 	}
 	\caption{Formato da instrução codificada \textit{ldw}}
@@ -151,8 +158,7 @@ dois bits mais significativos da instrução codificada são $10$.
 Logo a seguir são codificados o valor imediato e o registrador de destino $RD$.
 Os bits dos dois valores estão misturados de forma que os bits representado
 o registrador $RD$ fique nas mesmas posições para todas as instruções que o utilizam.
-Essa decisão simplifica e hardware necessário para implementação e 
-é utilizada em arquiteturas de uso real[citation needed].
+Essa decisão simplifica e hardware necessário para implementação.
 
 \subsection{Instrução jz}
 \begin{table}[ht]
@@ -160,7 +166,7 @@ Essa decisão simplifica e hardware necessário para implementação e
 	\resizebox{\textwidth}{!}{%
 		\begin{tabular}{|l|l|l|l|l|l|l|l|}
 			\hline
-			1 & 1 & 0 & 0 & $RS_0$ & $RS_1$ & $RP_1$ & $RP_0$ \\ \hline
+			1 & 1 & 0 & 0 & $RS_0$ & $RS_1$ & $RP_0$ & $RP_1$ \\ \hline
 		\end{tabular}%
 	}
 	\caption{Formato da instrução codificada \textit{jz}}
@@ -195,7 +201,7 @@ Essa instrução não realiza nenhuma operação.
 \section{Implementação}
 
 O projeto foi todo implementado em VHDL de forma modular.
-A figura \ref{fig:hierarquia} lista os componentes a ilustra a hierarquia entre eles.
+A figura \ref{fig:hierarquia} lista os componentes e ilustra a hierarquia entre eles.
 
 \begin{figure}[ht]
 	\centering
@@ -209,14 +215,14 @@ A figura \ref{fig:hierarquia} lista os componentes a ilustra a hierarquia entre 
 No topo da hierarquia temos a entidade \textit{toplevel}, que instancia os decodificadores para
 os displays de 7 segmentos \textit{seg7}, a memória \textit{ram}, a unidade de controle
 \textit{control\_unit}, a unidade lógico aritmética \textit{ula} e o arquivo de registradores
-\textit{register\_file}, e implementa o cominho de dados comregistradores intermediários
+\textit{register\_file}, e implementa o caminho de dados com registradores intermediários
 e multiplexadores utilizando construções em VHDL.
 
 \par
 A memória \textit{ram} ainda instancia um componente da biblioteca
 do Quartus, a \textit{megaram}. O nome foi escolhido pois se trata da
 ram de uma porta da biblioteca \textit{megafunctions}. Com esse componente
-podemos também utilizar a ferramente \textit{In-System Memory Content Editor} para
+podemos também utilizar a ferramenta \textit{In-System Memory Content Editor} para
 manipular os dados na memória sem necessidade de recompilação.
 
 \par
@@ -241,7 +247,7 @@ de destino.
 
 Para as instruções \textit{ldw} e \textit{stw}, o estado \textit{mem addr} prepara um dos operandos utilizados,
 para a \textit{ldw} é o endereço que será lido e para a \textit{stw} é o registrador que será salvo na memória.
-Os estados seguintes \textit{mem read} e \textit{mem write} preparam o segunto operando de cada instrução.
+Os estados seguintes \textit{mem read} e \textit{mem write} preparam o segundo operando de cada instrução.
 A instrução \textit{lwd} ainda requer um outro estado \textit{mem wb} para realizar a gravação no registrador.
 
 Já para a instrução \textit{jz}, ainda no estado \textit{decode} o endereço de salto já é preparado.
@@ -272,21 +278,21 @@ gravados nos endereços 0x02, 0x03 são os argumentos do programa, e o endereço
 No caso o programa irá calcular o quociente entre os valores hexadecimais 0x64 e 0x32.
 
 \begin{verbatim}
-00000000: b3  sei r0 0xf    1011 0011
-00000001: c4  jz r1 r0      1100 0100 -- pula para o comeco do programa
+00000000: b3  sei r0 0xf    1011 0011 -- pula para o
+00000001: c4  jz r1 r0      1100 0100 -- comeco do programa
 00000002: 64  operando x
 00000003: 32  operando y
 00000004: 00  quociente q = x/y
 \end{verbatim}
 
 Existem também nesse diretório um Makefile que cria o arquivo no formato intel hex para gravação da memória.
-Para executar esse Makefile é necessário instação dos utilitários de linha de comando xxd e srec.
+Para executar esse Makefile é necessário instalação dos utilitários de linha de comando xxd e srec.
 Esse script já está configurado para preparar o arquivo para ser carregado para rodar na placa ou para simulação
 pelo modelsim.
 
 Com o programa carregado na placa podemos utilizar o \textit{In-System Memory Content Editor}, acessado pelos menus conforme
-figura \ref{fig:editor}, para editar a memória e alterar os argumentos do algoritmo e então
-resetar o programa por qualquer um dos botões na placa para realizar outra divisão.
+figura \ref{fig:editor}, para editar a memória e alterar os argumentos do algoritmo.
+Depois basta resetar o programa por qualquer um dos botões na placa para realizar outra divisão.
 
 \begin{figure}[ht]
 	\centering
@@ -294,5 +300,29 @@ resetar o programa por qualquer um dos botões na placa para realizar outra divi
 	\caption{Acesso ao editor de memória pelo menu do Quartus}
 	\label{fig:editor}
 \end{figure}
+
+Para acessar o editor de memória foi necessário habilitar a funcionalidade durante a criação da entidade
+da ram de uma porta pelo catálogo IP. Essa opção está marcada com um "x" vermelho na figura \ref{fig:enable_editor}.
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width=\textwidth]{./images/enable_editor.png}
+	\caption{Opção para habilitar o editor de memória}
+	\label{fig:enable_editor}
+\end{figure}
+
+\newpage
+\section{Conclusão e comentários adicionais}
+Foi utilizado nesse projeto a maioria dos conceitos estudados durante o semestre.
+Conhecimento sobre memórias, lógica combinacional, registradores e máquinas de estado foram necessários para esse projeto.
+O processador desenvolvido é um modelo simplificado, porém já serve como base para o estudo mais aprofundado 
+que é ementa de disciplinas futuras sobre arquitetura de computadores.
+
+Os códigos, descrições VHDL e programa de exemplo, estão disponíveis no diretório do projeto.
+
+
+
+\newpage
+\printbibliography
 
 \end{document}

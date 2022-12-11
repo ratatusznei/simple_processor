@@ -12,7 +12,7 @@ architecture anode_common of seg7 is
 begin
 	process(hex)
 	begin
-		case hex is          -- "gfedcba"
+		case hex is           -- "gfedcba"
 			when x"0" => segs <= "1000000";
 			when x"1" => segs <= "1111001";
 			when x"2" => segs <= "0100100";
