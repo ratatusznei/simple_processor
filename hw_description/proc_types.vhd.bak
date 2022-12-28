@@ -1,0 +1,3 @@
+package proc_types is
+	type ula_op is (SOMA, NE, LESS, ZERO);
+end;

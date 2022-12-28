@@ -1,0 +1,331 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/op/Aulas/digital-systems/final_project/hw_description/simulation/modelsim
+Econtrol_unit
+Z1 w1670767619
+Z2 DPx4 work 10 proc_types 0 22 `X=[4alQJ@XZS^z^`5N[71
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+Z5 8/home/op/Aulas/digital-systems/final_project/hw_description/control_unit.vhd
+Z6 F/home/op/Aulas/digital-systems/final_project/hw_description/control_unit.vhd
+l0
+L9
+V`14gnc9IaCTMkLzeDHoan2
+!s100 EFT<?zmC`G_RMB?^A[7?H2
+Z7 OV;C;10.5b;63
+31
+Z8 !s110 1670767800
+!i10b 1
+Z9 !s108 1670767800.000000
+Z10 !s90 -reportprogress|300|-93|-work|work|/home/op/Aulas/digital-systems/final_project/hw_description/control_unit.vhd|
+Z11 !s107 /home/op/Aulas/digital-systems/final_project/hw_description/control_unit.vhd|
+!i113 1
+Z12 o-93 -work work
+Z13 tExplicit 1 CvgOpt 0
+Aarch
+R2
+R3
+R4
+Z14 DEx4 work 12 control_unit 0 22 `14gnc9IaCTMkLzeDHoan2
+l34
+L32
+VXd0cEEfSBePJe6RbT:^fe0
+!s100 EMF;Jlz]2R?fa[m_4[OFi0
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Emegaram
+Z15 w1670092532
+Z16 DPx9 altera_mf 20 altera_mf_components 0 22 gV:l9C^?PSb6]b5V?_jR@3
+R3
+R4
+R0
+Z17 8/home/op/Aulas/digital-systems/final_project/hw_description/megaram.vhd
+Z18 F/home/op/Aulas/digital-systems/final_project/hw_description/megaram.vhd
+l0
+L42
+V>QBjRNBO_RkKa@lG07@z53
+!s100 M1i4EhD`aj=T5L5T8ZIVm2
+R7
+31
+R8
+!i10b 1
+Z19 !s108 1670767799.000000
+Z20 !s90 -reportprogress|300|-93|-work|work|/home/op/Aulas/digital-systems/final_project/hw_description/megaram.vhd|
+Z21 !s107 /home/op/Aulas/digital-systems/final_project/hw_description/megaram.vhd|
+!i113 1
+R12
+R13
+Asyn
+R16
+R3
+R4
+Z22 DEx4 work 7 megaram 0 22 >QBjRNBO_RkKa@lG07@z53
+l58
+L54
+V5mjT[>V1XEl_LzIP6IWC80
+!s100 O9edYJFNIAPIK]jdYiSjO0
+R7
+31
+R8
+!i10b 1
+R19
+R20
+R21
+!i113 1
+R12
+R13
+Pproc_types
+R3
+R4
+w1670767412
+R0
+8/home/op/Aulas/digital-systems/final_project/hw_description/proc_types.vhd
+F/home/op/Aulas/digital-systems/final_project/hw_description/proc_types.vhd
+l0
+L5
+V`X=[4alQJ@XZS^z^`5N[71
+!s100 dbgR6AR2dz0216XD?WG?72
+R7
+31
+Z23 !s110 1670767799
+!i10b 1
+R19
+!s90 -reportprogress|300|-93|-work|work|/home/op/Aulas/digital-systems/final_project/hw_description/proc_types.vhd|
+!s107 /home/op/Aulas/digital-systems/final_project/hw_description/proc_types.vhd|
+!i113 1
+R12
+R13
+Eram
+Z24 w1670767498
+R2
+Z25 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+R3
+R4
+R0
+Z26 8/home/op/Aulas/digital-systems/final_project/hw_description/ram.vhd
+Z27 F/home/op/Aulas/digital-systems/final_project/hw_description/ram.vhd
+l0
+L12
+VggQ^DTknglamPK@m67A0>3
+!s100 S8F^Eb>C[F0WelHC`bnXR0
+R7
+31
+R8
+!i10b 1
+R9
+Z28 !s90 -reportprogress|300|-93|-work|work|/home/op/Aulas/digital-systems/final_project/hw_description/ram.vhd|
+Z29 !s107 /home/op/Aulas/digital-systems/final_project/hw_description/ram.vhd|
+!i113 1
+R12
+R13
+Aarch
+R16
+R22
+R2
+R25
+R3
+R4
+Z30 DEx4 work 3 ram 0 22 ggQ^DTknglamPK@m67A0>3
+l29
+L25
+VXJfgJ6zW06MSlS^CQZNWm3
+!s100 Pge>_PmdYzf<d67@]OZTV1
+R7
+31
+R8
+!i10b 1
+R9
+R28
+R29
+!i113 1
+R12
+R13
+Eregister_file
+Z31 w1670767525
+R2
+R25
+R3
+R4
+R0
+Z32 8/home/op/Aulas/digital-systems/final_project/hw_description/register_file.vhd
+Z33 F/home/op/Aulas/digital-systems/final_project/hw_description/register_file.vhd
+l0
+L12
+VfP[=Z8<L`===3UPmS^InS2
+!s100 SOnX:jVzOE97=FhBT_M]V3
+R7
+31
+R8
+!i10b 1
+R9
+Z34 !s90 -reportprogress|300|-93|-work|work|/home/op/Aulas/digital-systems/final_project/hw_description/register_file.vhd|
+Z35 !s107 /home/op/Aulas/digital-systems/final_project/hw_description/register_file.vhd|
+!i113 1
+R12
+R13
+Aarch
+R2
+R25
+R3
+R4
+Z36 DEx4 work 13 register_file 0 22 fP[=Z8<L`===3UPmS^InS2
+l25
+L23
+V3_ca5Y<zDmMJJKW5M_1FF1
+!s100 S@k9zk[j=Z917hClLfl@B1
+R7
+31
+R8
+!i10b 1
+R9
+R34
+R35
+!i113 1
+R12
+R13
+Eseg7
+Z37 w1670767548
+R3
+R4
+R0
+Z38 8/home/op/Aulas/digital-systems/final_project/hw_description/seg7.vhd
+Z39 F/home/op/Aulas/digital-systems/final_project/hw_description/seg7.vhd
+l0
+L6
+VTYWCeld_Fecc<RfH0f:a`1
+!s100 hm@_cjlo:n@W]>fMoj`=W0
+R7
+31
+R23
+!i10b 1
+R19
+Z40 !s90 -reportprogress|300|-93|-work|work|/home/op/Aulas/digital-systems/final_project/hw_description/seg7.vhd|
+Z41 !s107 /home/op/Aulas/digital-systems/final_project/hw_description/seg7.vhd|
+!i113 1
+R12
+R13
+Aanode_common
+R3
+R4
+Z42 DEx4 work 4 seg7 0 22 TYWCeld_Fecc<RfH0f:a`1
+l14
+L13
+V>n9hZ:>H^@lkViWNzJ@Fk2
+!s100 5UiJQ5deP9^Mi9ZAd;?Fa3
+R7
+31
+R23
+!i10b 1
+R19
+R40
+R41
+!i113 1
+R12
+R13
+Etoplevel
+Z43 w1670767573
+R2
+R25
+R3
+R4
+R0
+Z44 8/home/op/Aulas/digital-systems/final_project/hw_description/toplevel.vhd
+Z45 F/home/op/Aulas/digital-systems/final_project/hw_description/toplevel.vhd
+l0
+L8
+V18g8gGn=ii^jQ:NWTAz6>0
+!s100 Y[Y^953iSRObaDgO84K7A0
+R7
+31
+R8
+!i10b 1
+R9
+Z46 !s90 -reportprogress|300|-93|-work|work|/home/op/Aulas/digital-systems/final_project/hw_description/toplevel.vhd|
+Z47 !s107 /home/op/Aulas/digital-systems/final_project/hw_description/toplevel.vhd|
+!i113 1
+R12
+R13
+Aproc
+R36
+Z48 DEx4 work 3 ula 0 22 zP79XU[ilW_05<9SHG_L91
+R30
+R14
+R42
+R2
+R25
+R3
+R4
+DEx4 work 8 toplevel 0 22 18g8gGn=ii^jQ:NWTAz6>0
+l45
+L17
+V4]dNYdgVjH92VXb:[783W2
+!s100 3`l^HcP6Eamo>`>ZE^WQF1
+R7
+31
+R8
+!i10b 1
+R9
+R46
+R47
+!i113 1
+R12
+R13
+Eula
+Z49 w1670767643
+R2
+R25
+R3
+R4
+R0
+Z50 8/home/op/Aulas/digital-systems/final_project/hw_description/ula.vhd
+Z51 F/home/op/Aulas/digital-systems/final_project/hw_description/ula.vhd
+l0
+L8
+VzP79XU[ilW_05<9SHG_L91
+!s100 [j?K]0BznS>UcMHLEl_E=1
+R7
+31
+R8
+!i10b 1
+R9
+Z52 !s90 -reportprogress|300|-93|-work|work|/home/op/Aulas/digital-systems/final_project/hw_description/ula.vhd|
+Z53 !s107 /home/op/Aulas/digital-systems/final_project/hw_description/ula.vhd|
+!i113 1
+R12
+R13
+Acomb
+R2
+R25
+R3
+R4
+R48
+l18
+L16
+V1ffOKM;Y^b^f;G8VaIOgT0
+!s100 j]EcIkZGmLERS<I@RWI`R1
+R7
+31
+R8
+!i10b 1
+R9
+R52
+R53
+!i113 1
+R12
+R13

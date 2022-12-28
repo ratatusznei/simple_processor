@@ -1,0 +1,17 @@
+
+State Machine - |toplevel|control_unit:control0|state
+Name state.state_branch_zero_wait state.state_branch_zero state.state_ula_wb state.state_execute_ula state.state_execute_imm state.state_mem_wb state.state_mem_write_wait state.state_mem_write state.state_mem_read_wait state.state_mem_read state.state_mem_addr state.state_decode state.state_fetch_wait state.state_fetch 
+state.state_fetch 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+state.state_fetch_wait 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+state.state_decode 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+state.state_mem_addr 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+state.state_mem_read 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+state.state_mem_read_wait 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+state.state_mem_write 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+state.state_mem_write_wait 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+state.state_mem_wb 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+state.state_execute_imm 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+state.state_execute_ula 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+state.state_ula_wb 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+state.state_branch_zero 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+state.state_branch_zero_wait 1 0 0 0 0 0 0 0 0 0 0 0 0 1 

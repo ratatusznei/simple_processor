@@ -1,0 +1,21 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity toplevel is
+	port(
+		a: out std_logic
+	);
+end entity;
+
+architecture proc of toplevel is
+begin
+	a <= '0';
+	
+	ram0: entity work.ram
+	port map(
+	);
+	
+	ula0: entity work.ula;
+	regfile0: entity work.register_file;
+	control0: entity work.control_unit;
+end architecture;

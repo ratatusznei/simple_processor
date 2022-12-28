@@ -1,0 +1,16 @@
+transcript on
+if {[file exists rtl_work]} {
+	vdel -lib rtl_work -all
+}
+vlib rtl_work
+vmap work rtl_work
+
+vcom -93 -work work {/home/op/Aulas/digital-systems/final_project/seg7.vhd}
+vcom -93 -work work {/home/op/Aulas/digital-systems/final_project/proc_types.vhd}
+vcom -93 -work work {/home/op/Aulas/digital-systems/final_project/megaram.vhd}
+vcom -93 -work work {/home/op/Aulas/digital-systems/final_project/ram.vhd}
+vcom -93 -work work {/home/op/Aulas/digital-systems/final_project/control_unit.vhd}
+vcom -93 -work work {/home/op/Aulas/digital-systems/final_project/ula.vhd}
+vcom -93 -work work {/home/op/Aulas/digital-systems/final_project/register_file.vhd}
+vcom -93 -work work {/home/op/Aulas/digital-systems/final_project/toplevel.vhd}
+

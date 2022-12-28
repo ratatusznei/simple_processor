@@ -1,0 +1,139 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use work.proc_types.all;
+
+entity control_unit is
+	port(
+		clk: in std_logic := '1';
+		instr: in word := x"FF";
+		is_zero: in std_logic := '0';
+		
+		fetch_instr: out std_logic := '0';
+		pc_write: out std_logic := '0';
+		mem_write: out std_logic := '0';
+		reg_write: out std_logic := '0';
+		
+		result_src: out result_src_type := result_from_ula_y;
+		address_src: out address_src_type := address_from_pc;
+		ula_src_a: out ula_src_a_type;
+		ula_src_b: out ula_src_b_type;
+
+		ula_control: out ula_op := SOMA
+	);
+end;
+
+architecture arch of control_unit is
+	signal state: control_state := state_fetch;
+	signal ula_op_bits: std_logic_vector(1 downto 0);
+begin
+	ula_op_bits <= instr(5 downto 4);
+
+	process(clk) is
+	begin
+		if falling_edge(clk) then
+			if state = state_fetch then
+				-- reset signals
+				reg_write <= '0';
+				mem_write <= '0';
+
+				-- prepare to read next instruction
+				fetch_instr <= '1';
+				address_src <= address_from_pc;
+				
+				-- increment pc
+				pc_write <= '1';
+				ula_src_a <= src_a_from_pc;
+				ula_src_b <= src_b_from_1;
+				ula_control <= SOMA;
+				result_src <= result_from_ula_y;
+				
+				state <= state_decode;
+
+			elsif state = state_decode then
+				-- reset signals
+				fetch_instr <= '0';
+				pc_write <= '0';
+				-- prepare for possible branch
+				ula_control <= SOMA;
+				ula_src_a <= src_a_from_0;
+				ula_src_b <= src_b_from_rdb_reg;
+				
+				-- decide next state
+				case instr(7 downto 5) is
+					when "00-" => state <= state_execute_ula;
+					when "01-" => state <= state_mem_addr;
+					when "10-" => state <= state_execute_imm;
+					when "110" => state <= state_branch_zero;
+					when others => state <= state_fetch;
+				end case;
+
+			elsif state = state_execute_ula then
+				case ula_op_bits is
+					when "00" => ula_control <= ZERO;
+					when "01" => ula_control <= SOMA;
+					when "10" => ula_control <= NE;
+					when others => ula_control <= LESS;
+				end case;
+				ula_src_a <= src_a_from_rda_reg;
+				ula_src_b <= src_b_from_rdb_reg;
+				
+				state <= state_ula_wb;
+			
+			elsif state = state_execute_imm then
+				ula_control <= SOMA;
+				ula_src_a <= src_a_from_0;
+				ula_src_b <= src_b_from_imm;
+				
+				state <= state_ula_wb;
+			
+			elsif state = state_ula_wb then
+				result_src <= result_from_ula_reg;
+				reg_write <= '1';
+				
+				state <= state_fetch;
+
+			elsif state = state_mem_addr then
+				ula_control <= SOMA;
+				ula_src_a <= src_a_from_0;
+				ula_src_b <= src_b_from_rdb_reg;
+				
+				-- decide mem_read / write
+				case instr(4) is
+					when '0' => state <= state_mem_read;
+					when '1' => state <= state_mem_write;
+					when others => state <= fetch;
+				end case;
+
+			elsif state = state_mem_read then
+				result_src <= result_from_ula_reg;
+				address_src <= address_from_result_reg;
+				
+				state <= state_mem_wb;
+			
+			elsif state = state_mem_write then
+				result_src <= result_from_ula_reg;
+				address_src <= address_from_result_reg;
+				mem_write <= '1';
+				ula_src_a <= src_a_from_rda_reg;
+				ula_src_b <= src_b_from_0;
+				
+				state <= state_fetch;
+			
+			elsif state = state_mem_wb then
+				result_src <= result_from_read_data_reg;
+				reg_write <= '1';
+
+				state <= state_fetch;
+				
+			elsif state = state_branch_zero then
+				ula_control <= SOMA;
+				ula_src_a <= src_a_from_rda_reg;
+				ula_src_b <= src_b_from_0;
+				result_src <= result_from_ula_reg;
+				pc_write <= is_zero;
+
+				state <= state_fetch;
+			end if;
+		end if;
+	end process;
+end;

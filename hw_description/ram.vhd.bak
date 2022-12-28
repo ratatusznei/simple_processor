@@ -1,0 +1,31 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use work.proc_types.all;
+
+entity ram is
+	port(
+		ra, wa: in ram_address := 0;
+		clk, we_not: std_logic := '1';
+		wd: in word := x"00";
+		rd: out word := x"00"
+	);
+end;
+
+architecture arch of ram is
+	signal data: ram_array := (
+		0 => x"01",
+		1 => x"02",
+		others => x"00"
+	); 
+begin
+	rd <= data(ra);
+	
+	process (clk) is
+	begin
+		if falling_edge(clk) then
+			if we_not = '0' then
+				data(wa) <= wd;
+			end if;
+		end if;
+	end process;
+end;
